@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Altrus - Community First Response</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  :root {
+        --primary: #00682f;
+        --primary-container: #e7f5ed;
+        --on-primary: #ffffff;
+        --surface: #f7fbf8;
+        --red-accent: #bd344c;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f0f4f1;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        overflow: hidden;
+    }
+
+    .phone-container {
+        width: 100%;
+        max-width: 430px;
+        height: 100vh;
+        background: var(--surface);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+        .phone-container {
+            height: 880px;
+            border-radius: 3rem;
+            border: 8px solid #1a1c1e;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.15);
+        }
+    }
+
+    .uae-gradient {
+        background: linear-gradient(135deg, #00682f 0%, #004d23 100%);
+    }
+
+    .glass {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+    }
+
+    .hidden { display: none !important; }
+
+    .view {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        animation: fadeIn 0.4s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .map-bg {
+        background-image: radial-gradient(#00682f 1px, transparent 1px);
+        background-size: 40px 40px;
+        opacity: 0.05;
+    }
+
+    .marker-glow {
+        filter: blur(12px);
+        opacity: 0.3;
+    }
+</style>
+  </head>
+<body>
+  <div class="phone-container">
+    <!-- Status Bar -->
+    <div class="h-12 flex items-center justify-between px-8 pt-4 pb-2 shrink-0 z-50 bg-white/80 backdrop-blur-sm">
+        <span class="text-sm font-bold">9:41</span>
+        <div class="flex items-center gap-1.5">
+            <div class="w-4 h-4 rounded-full border-2 border-black/20 flex items-center justify-center">
+                <div class="w-1.5 h-1.5 bg-black rounded-full"></div>
+            </div>
+            <svg class="w-4 h-4 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+        </div>
+    </div>
+
+    <!-- Views Container -->
+    <div id="views-container" class="flex-1 relative">
+        
+        <!-- Splash View -->
+        <div id="view-splash" class="view uae-gradient items-center justify-center z-[100]">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuClyZr4FZ4jD_2YYqWH2C3jlmJ9qzpy5G3Qyp9HXBEozfG0ddxrC7plwQkrx8cNaCCgwe18UMFDrthTwaSVWEcheBvyDuj4zrtDQU_mCvAbGx3sK3wr_tfn5Ju8R8ZZqqW0G2brrHGcVWuS4pIuF3v5bAM7KhJ07MA2qI6tEwVCbzdyD4jsJF578ocTAI5bqtexRZw3vkvBjdcKCA8SeG8UrCSBx6ix7ZdT0I0lRcw8G3LH6bToPsT-q3n4XgU5WDWV5Hk24U2-vi-5" class="h-24 brightness-0 invert mb-8">
+            <div class="w-32 h-1 bg-white/30 rounded-full overflow-hidden">
+                <div class="h-full bg-white animate-[loading_1.5s_infinite]"></div>
+            </div>
+        </div>
+
+        <!-- Login View -->
+        <div id="view-login" class="view px-8 pt-12 pb-8 overflow-y-auto hidden">
+            <div class="absolute top-4 right-6">
+                <button class="flex items-center gap-2 px-4 py-2 glass rounded-full shadow-sm border border-black/5">
+                    <span class="font-bold text-xs">العربية</span>
+                </button>
+            </div>
+            <div class="flex flex-col items-center mb-12">
+                <div class="w-20 h-20 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-6">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeqdr5epUP9vpJBA9809eBssDWh_WvxIXYLGuEno6ehDWMVZfqn8r_6LqyGeIod0LCbX3HmXHDtv2-A6E-NaoBDwRBa93tBlHpnKhUk5b37Hx0A2dldq64HEildYtqGOwDc-JCQ1t3JmY11-UZK4Hd8lXpQrtbBasKDcVgehBRzhDNNnPJqWTnYHTGoZK2Ix0jVQf8WuDjK-puKf9wxkNFnrS7sXsra6jTY87N4xqm-5SK2ApmjVUv6TSDLCMVN6h-_8xTVBfwj3-C" class="h-12">
+                </div>
+                <h2 class="text-2xl font-extrabold text-center tracking-tight">Sign in to your account</h2>
+            </div>
+            <div class="space-y-6 flex-1">
+                <div class="space-y-5">
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">Emirates ID</label>
+                        <input type="text" placeholder="784-XXXX-XXXXXXX-X" class="w-full px-5 py-4 bg-gray-100 rounded-xl border-none focus:ring-2 focus:ring-green-500/20 font-semibold">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">Pin / Password</label>
+                        <input type="password" placeholder="••••••••" class="w-full px-5 py-4 bg-gray-100 rounded-xl border-none focus:ring-2 focus:ring-green-500/20 font-semibold">
+                    </div>
+                </div>
+                <button onclick="navigateTo('loading')" class="w-full uae-gradient text-white py-4 rounded-xl font-bold text-lg shadow-lg">Login with UAE PASS</button>
+                <div class="flex items-center gap-4 py-4">
+                    <div class="h-px flex-1 bg-gray-200"></div>
+                    <span class="text-[10px] font-bold text-gray-400 uppercase">or use biometrics</span>
+                    <div class="h-px flex-1 bg-gray-200"></div>
+                </div>
+                <button onclick="navigateTo('loading')" class="w-full flex items-center justify-center gap-3 py-4 rounded-xl font-bold bg-gray-100">
+                    <svg class="w-6 h-6 text-green-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12Z"></path><path d="M12 12V12.01"></path><path d="M8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12"></path><path d="M12 16C10.3431 16 9 14.6569 9 13"></path></svg>
+                    <span>Face ID / Touch ID</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading View -->
+        <div id="view-loading" class="view items-center justify-center p-8 hidden">
+            <div class="bg-white p-10 rounded-[2.5rem] shadow-2xl flex flex-col items-center w-full max-w-xs">
+                <div class="w-24 h-24 rounded-full border-4 border-green-100 flex items-center justify-center mb-6 animate-pulse">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeqdr5epUP9vpJBA9809eBssDWh_WvxIXYLGuEno6ehDWMVZfqn8r_6LqyGeIod0LCbX3HmXHDtv2-A6E-NaoBDwRBa93tBlHpnKhUk5b37Hx0A2dldq64HEildYtqGOwDc-JCQ1t3JmY11-UZK4Hd8lXpQrtbBasKDcVgehBRzhDNNnPJqWTnYHTGoZK2Ix0jVQf8WuDjK-puKf9wxkNFnrS7sXsra6jTY87N4xqm-5SK2ApmjVUv6TSDLCMVN6h-_8xTVBfwj3-C" class="h-10">
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">Authorizing</h3>
+                <p class="text-sm text-gray-500 mt-2 text-center">Securely connecting to <br>UAE PASS services...</p>
+            </div>
+        </div>
+
+        <!-- Main View -->
+        <div id="view-main" class="view bg-[#f7fbf8] hidden">
+            <header class="flex items-center justify-between px-6 py-4">
+                <div class="flex items-center gap-3">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Ahmed" class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
+                    <h1 class="text-xl font-extrabold text-[#00682f]">Altrus</h1>
+                </div>
+                <button class="p-2 rounded-full bg-white shadow-sm text-[#00682f] relative">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    <div class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></div>
+                </button>
+            </header>
+            <div class="flex-1 overflow-y-auto px-6 pb-24">
+                <div class="mt-6 mb-8">
+                    <span class="text-[10px] font-bold text-green-800/60 uppercase tracking-widest">Join the movement</span>
+                    <h2 class="text-4xl font-extrabold text-gray-900 mt-2 leading-tight">Select Your <br><span class="text-[#00682f]">Path.</span></h2>
+                    <p class="text-gray-500 mt-4">Choose how you wish to contribute to the community. Your expertise saves lives.</p>
+                </div>
+                <div class="space-y-4">
+                    <div onclick="navigateTo('registration')" class="p-6 bg-white rounded-[2rem] border-2 border-[#00682f] cursor-pointer">
+                        <div class="flex items-start justify-between">
+                            <div class="w-14 h-14 bg-green-50 rounded-2xl flex items-center justify-center text-[#00682f]">
+                                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                            </div>
+                            <div class="w-1.5 h-8 bg-red-500 rounded-full"></div>
+                        </div>
+                        <h3 class="text-xl font-bold mt-6">Medical Responder</h3>
+                        <p class="text-sm text-gray-500 mt-2">For certified doctors, nurses, and paramedics.</p>
+                    </div>
+                    <div class="p-6 bg-white rounded-[2rem] shadow-sm">
+                        <div class="w-14 h-14 bg-red-50 rounded-2xl flex items-center justify-center text-red-500">
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mt-6">Non-Medical</h3>
+                        <p class="text-sm text-gray-500 mt-2">Community heroes providing logistics and support.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Bottom Nav -->
+            <nav class="absolute bottom-0 left-0 right-0 h-20 bg-white/80 backdrop-blur-md border-t flex items-center justify-around px-4 pb-4">
+                <button class="flex flex-col items-center text-[#00682f]"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg><span class="text-[8px] font-bold">HOME</span></button>
+                <button class="flex flex-col items-center text-gray-400"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg><span class="text-[8px] font-bold">TASKS</span></button>
+                <div class="w-12"></div>
+                <button class="flex flex-col items-center text-gray-400"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg><span class="text-[8px] font-bold">AI</span></button>
+                <div class="absolute right-4 -top-2">
+                    <button onclick="navigateTo('profile')" class="bg-[#00682f] text-white px-4 py-3 rounded-3xl flex flex-col items-center shadow-lg">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        <span class="text-[8px] font-bold mt-1">PROFILE</span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Registration View -->
+        <div id="view-registration" class="view bg-[#f7fbf8] hidden">
+            <header class="flex items-center px-6 py-4">
+                <button onclick="navigateTo('main')" class="p-2 -ml-2"><svg class="w-6 h-6 text-[#00682f]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"></path></svg></button>
+                <h1 class="text-xl font-bold text-[#00682f] ml-2">Medical Responder</h1>
+            </header>
+            <div class="flex-1 overflow-y-auto px-6 pb-12">
+                <div class="mt-6 mb-8">
+                    <div class="inline-flex items-center px-3 py-1 bg-green-50 rounded-full mb-4">
+                        <span class="text-[10px] font-bold text-[#00682f] uppercase">Verification</span>
+                    </div>
+                    <h2 class="text-4xl font-extrabold text-gray-900 leading-tight">Medical Responder <br>Registration</h2>
+                </div>
+                <div class="relative mt-10 p-8 bg-white rounded-[2.5rem] shadow-sm">
+                    <div class="absolute -top-4 -right-4 w-12 h-12 bg-[#bd344c] rounded-2xl flex items-center justify-center text-white rotate-12 shadow-lg">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">License ID</label>
+                            <input type="text" placeholder="e.g. MED-12345678" class="w-full px-5 py-4 bg-[#f7fbf8] rounded-2xl border-none">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">License Authority</label>
+                            <select class="w-full px-5 py-4 bg-[#f7fbf8] rounded-2xl border-none appearance-none">
+                                <option>DHA</option>
+                                <option>MOHAP</option>
+                            </select>
+                        </div>
+                        <button onclick="navigateTo('map')" class="w-full bg-[#00682f] text-white py-4 rounded-2xl font-bold shadow-lg">Complete Registration</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map View -->
+        <div id="view-map" class="view bg-[#f7fbf8] hidden">
+            <header class="flex items-center justify-between px-6 py-4 z-20">
+                <div class="flex items-center gap-3">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Ahmed" class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
+                    <h1 class="text-xl font-extrabold text-[#00682f]">Altrus</h1>
+                </div>
+                <button class="p-2 rounded-full bg-white shadow-sm text-[#00682f]"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></button>
+            </header>
+            <div class="flex-1 relative overflow-hidden bg-[#f0f9f2]">
+                <div class="absolute inset-0 map-bg"></div>
+                <div class="absolute top-4 left-0 right-0 flex justify-center gap-3 z-10">
+                    <div class="bg-white px-4 py-2 rounded-full shadow-sm flex items-center gap-2">
+                        <div class="w-2 h-2 bg-[#bd344c] rounded-full"></div>
+                        <span class="text-[10px] font-bold uppercase">12 Nearby AEDs</span>
+                    </div>
+                </div>
+                <!-- Markers -->
+                <div class="absolute left-[30%] top-[30%]"><div class="w-8 h-8 bg-[#00682f] rounded-full rounded-bl-none rotate-45 border-2 border-white shadow-lg"></div></div>
+                <div class="absolute left-[60%] top-[45%]"><div class="w-8 h-8 bg-[#bd344c] rounded-xl border-2 border-white shadow-lg"></div></div>
+                
+                <div class="absolute bottom-6 left-6 right-6 z-10">
+                    <div class="bg-white p-4 rounded-[2rem] shadow-xl flex items-center gap-4">
+                        <div class="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center text-[#00682f]"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></div>
+                        <div class="flex-1"><p class="text-sm font-bold">New AED station installed...</p></div>
+                    </div>
+                </div>
+            </div>
+            <nav class="h-24 bg-white border-t flex items-center justify-around px-4 pb-4 relative z-20">
+                <button onclick="navigateTo('main')" class="flex flex-col items-center text-gray-400"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg><span class="text-[8px] font-bold">HOME</span></button>
+                <div class="relative -top-6">
+                    <button class="w-16 h-16 bg-[#bd344c] rounded-full shadow-lg flex items-center justify-center text-white border-4 border-white text-3xl font-bold">*</button>
+                    <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-[#bd344c]">HELP</span>
+                </div>
+                <button onclick="navigateTo('profile')" class="flex flex-col items-center text-gray-400"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span class="text-[8px] font-bold">PROFILE</span></button>
+            </nav>
+        </div>
+
+        <!-- Profile View -->
+        <div id="view-profile" class="view bg-[#f7fbf8] hidden">
+            <header class="flex items-center justify-between px-6 py-4">
+                <div class="flex items-center gap-3">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Ahmed" class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
+                    <h1 class="text-xl font-extrabold text-[#00682f]">Altrus</h1>
+                </div>
+            </header>
+            <div class="flex-1 overflow-y-auto px-6 pb-24">
+                <div class="flex flex-col items-center mt-8">
+                    <div class="w-32 h-32 rounded-full border-4 border-[#00682f] p-1 shadow-xl">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Ahmed" class="w-full h-full rounded-full bg-white">
+                    </div>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mt-6">Ahmed Al-Sayed</h2>
+                    <div class="mt-3 px-4 py-2 bg-red-50 rounded-full flex items-center gap-2">
+                        <span class="text-[10px] font-bold text-[#bd344c] uppercase">Medical Responder</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4 mt-10">
+                    <div class="bg-white p-6 rounded-[2rem] shadow-sm">
+                        <p class="text-3xl font-extrabold">128</p>
+                        <p class="text-[10px] font-bold text-gray-400 uppercase">Hours Served</p>
+                    </div>
+                    <div class="bg-[#00682f] p-6 rounded-[2rem] text-white shadow-lg">
+                        <p class="text-3xl font-extrabold">Elite</p>
+                        <p class="text-[10px] font-bold opacity-60 uppercase">Status Level</p>
+                    </div>
+                </div>
+                <div class="mt-8 space-y-3">
+                    <div class="p-5 bg-white rounded-[1.5rem] flex items-center justify-between shadow-sm">
+                        <span class="font-bold">Certification Status</span>
+                        <span class="px-3 py-1 bg-green-50 text-[#00682f] text-[10px] font-bold rounded-full">ACTIVE</span>
+                    </div>
+                </div>
+                <button onclick="navigateTo('login')" class="w-full mt-10 text-[#bd344c] font-bold">Logout</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Home Indicator -->
+    <div class="h-8 flex items-center justify-center shrink-0 bg-white/80 backdrop-blur-sm z-50">
+        <div class="w-32 h-1.5 bg-black/10 rounded-full"></div>
+    </div>
+</div>
+
+<script>
+    function navigateTo(viewId) {
+        // Hide all views
+        const views = document.querySelectorAll('.view');
+        views.forEach(v => v.classList.add('hidden'));
+
+        // Show target view
+        const target = document.getElementById('view-' + viewId);
+        if (target) {
+            target.classList.remove('hidden');
+        }
+
+        // Special logic for loading
+        if (viewId === 'loading') {
+            setTimeout(() => navigateTo('main'), 2000);
+        }
+    }
+
+    // Initial splash screen timeout
+    window.onload = () => {
+        setTimeout(() => navigateTo('login'), 2000);
+    };
+</script>
+  </body>
+</html>
